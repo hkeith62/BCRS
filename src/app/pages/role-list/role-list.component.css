@@ -6,7 +6,7 @@
     Description: Styling file for the role-list component.
 */
 
-/************* Main Mat-Card Styling *************/
+/* Styling for Mat-card */
 .roles-list-card {
   border-radius: 0;
   padding: 0;
