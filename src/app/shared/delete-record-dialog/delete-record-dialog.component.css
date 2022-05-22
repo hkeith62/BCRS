@@ -1,0 +1,45 @@
+.delete-title {
+  margin-bottom: 40px;
+  background-color: #5b5b5b;
+  padding: 15px;
+}
+
+.dialog-content {
+  padding: 15px;
+  color: black;
+}
+
+.dialog-text {
+  font-size: 16px;
+}
+
+.btn-dialog {
+  border-radius: 0;
+  font-size: 14px;
+}
+
+.btn-back {
+  border-radius: 0px;
+  font-size: 14px;
+}
+
+
+.btn-dialog-cancel {
+  border-radius: 0;
+  font-size: 14px;
+  color: rgb(240, 240, 240);
+  background-color: #888888;
+}
+
+.btns-div {
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+
+::ng-deep.mat-dialog-container {
+  padding: 0px !important;
+  background-color: #ffffff;
+}
+

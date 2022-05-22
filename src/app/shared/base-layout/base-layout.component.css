@@ -1,0 +1,59 @@
+/*
+=======================================
+// Title: Bob’s Computer Repair Shop
+// Date: 28 April 2022
+// Authors: Evan Durkin, Keith Hall,
+// Gustavo Roo Gonzalez, and Gunner Bradley
+// Description: Css file for the base-layout component.
+=======================================
+*/
+  .main-content {
+    margin: 0 auto;
+    padding-bottom: 5%;
+  }
+
+  .signInContainer {
+    align-self: flex-end;
+    text-align-last: center;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+
+  .mat-button-wrapper {
+    padding: 15px;
+  }
+
+  .signInBtn {
+    font-family: 'Aldrich', sans-serif;
+    color: #003716;
+    background-color: #579068;
+    border-radius: 0;
+    font-size: 24px;
+  }
+
+  .signInBtn:hover {
+  background-color: #5fed8a;
+  cursor: pointer;
+  transition: .5s;
+  }
+
+  .registerLink {
+    font-family: 'Karla', sans-serif;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    /* text-decoration: underline; */
+  }
+
+  .registerLink:hover {
+    text-decoration: underline;
+  }
+
+  /* .main-content {
+    padding-left: 30px;
+  } */
+
+  .footer-content {
+   padding: 10px
+ }
+

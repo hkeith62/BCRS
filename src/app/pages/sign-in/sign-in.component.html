@@ -1,0 +1,78 @@
+<!--
+    Title: index.html
+    Date: 22 April 2022
+    Authors: Evan Durkin, Keith Hall,
+    Gustavo Roo Gonzalez, and Gunner Bradley
+    Description: Html file for the sign-in component.
+-->
+
+  <div fxLayout="row wrap" fxLayoutAlign="center start">
+    <div >
+
+      <!-- Sign in card -->
+      <mat-card class="mat-elevation-z5 sign-in-container">
+      <br><br>
+
+        <!-- Title and Subtitle -->
+        <mat-card-title
+          color="#323232"
+          class="logo-sign-in">
+          Bob's Computer Repair Shop
+        </mat-card-title>
+        <br/><br/>
+        <mat-card-subtitle class="sign-in-subtitle">
+          Employee Sign-In
+        </mat-card-subtitle>
+        <p class="valid-title" style="text-align: center;font-family:Karla;color:#f5f5f5">Please enter a valid username and password to proceed</p>
+        <mat-card-content>
+          <small class="error-sign-in"  *ngIf="errorMessage"> {{ errorMessage }}</small>
+          <br>
+          <mat-card class="mat-elevation-z0" class="form-card">
+
+            <!-- Sign in Form -->
+            <form [formGroup]="form" (ngSubmit)="signin(); form.reset()" #loginForm="ngForm">
+              <mat-card-content fxLayout="column" fxLayoutGap="10px">
+
+                <!-- Username field with placeholder-->
+                <mat-form-field appearance="fill">
+                  <input type="text" matInput fxFlex [formControl]="form.controls['userName']" placeholder="Username" class="input"/>
+                  <mat-error class="error-sign-in" *ngIf="form.controls.userName.hasError('required') && form.controls.userName.touched" style="top: calc(100% - -0.2083333333000006em);">
+                    Username is a required field.
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Password field with placeholder-->
+                <mat-form-field appearance="fill">
+                  <input type="password" matInput fxFlex [formControl]="form.controls['password']" placeholder="Password"/>
+                  <mat-error class="error-sign-in" *ngIf="form.controls.password.hasError('required') && form.controls.password.touched">
+                    Must be at least 8 characters, contain one number, and one letter.
+                  </mat-error>
+                </mat-form-field>
+              </mat-card-content>
+
+              <!-- Sign-in button -->
+              <mat-card-actions>
+                <button
+                  mat-button
+                  class="btn-primary btn-signIn"
+                  type="submit"
+                  [disabled]="!form.valid" fxFlex>sign in
+                </button>
+              </mat-card-actions>
+
+              <p style="text-align: center; font-weight: lighter;">
+                <a routerLink="/post-session/sign-up" style="text-decoration: underline;color:#F5F5F5" class="help-link" color="primary">Register for an Account</a>
+              </p>
+
+              <p style="text-align:center; font-weight: lighter;">
+                <a routerLink="/post-session/user-details" style="text-decoration: underline; color:#F5F5F5" class="help-link" align="end">Forgot Password?</a>
+              </p>
+
+
+            </form>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+

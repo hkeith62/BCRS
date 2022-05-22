@@ -1,0 +1,32 @@
+/*
+=======================================
+// Title: Bob’s Computer Repair Shop
+// Date: 20 April 2022
+// Authors: Evan Durkin, Keith Hall,
+// Gustavo Roo Gonzalez, and Gunner Bradley
+// Description: User Profile Styling
+=======================================
+*/
+
+.user-profile-card {
+  border-radius: 0;
+  padding: 0;
+  min-width: 350px;
+  max-width: 85%;
+  margin: 0 auto;
+}
+.users-title {
+  text-align: center;
+  font-family: 'Aldrich', sans-serif;
+  padding: 20px;
+  margin-bottom: 0;
+
+}
+.user-info {
+  margin-left:2px;
+  margin-bottom: 5px;
+  color:  #568e67;
+}
+
+
+
