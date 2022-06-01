@@ -6,8 +6,7 @@
     Description: Html file for the standard-layout component.
     This component is used for standard employees to access information.
 -->
-
-<div fxLayout="column">
+ <div fxLayout="column">
 
   <!-- navigation -->
   <nav fxFlex>
@@ -18,44 +17,49 @@
         <a routerLink="/" class="logo-navbar">Bob's <br/> Computer Repair Shop</a>
         <title class="dashboard-header">employee dashboard</title>
         <a [matMenuTriggerFor]="profileMenu"
-        aria-label="User Profile Menu" style="font-size: 16px; float: right; font-family: 'karla', sans-serif;cursor:pointer">{{ userName }} <mat-icon style="font-size: 24px;">perm_identity</mat-icon>
+        aria-label="User Profile Menu" style="font-size: 16px; float: right; font-family: 'karla', sans-serif;cursor:pointer">
+        <mat-icon style="font-size: 24px;">account_circle</mat-icon>
+        <mat-icon style="width: 20px; font-size: 20px;">arrow_drop_down</mat-icon>
+
           <!-- Icon drop down menu items -->
           <mat-menu #profileMenu="matMenu">
-            <p style="padding: 10px; padding-right: 5px; color:white;" class="menu">
+              <p style="padding: 10px; padding-right: 5px; color:white;" class="menu">
+                <span style="margin-left:6%;width:100%;font-weight:600">Signed in as &nbsp;{{ userName }}</span>
+                <span *ngIf="isAdmin()" style="font-weight: 400; color: white">
+                  [{{ userRole.role }}]</span>
+              </p>
 
-                <mat-icon>account_box</mat-icon>
-                <span style="margin-left:6%;width:100%">Signed in as &nbsp;{{ userName }}</span>
-            </p>
+              <!-- Divider space in dropdown -->
+              <mat-divider></mat-divider>
 
-          <!-- Divider space in dropdown -->
-          <mat-divider></mat-divider>
-
-          <!-- Lower divider -->
-          <mat-divider></mat-divider>
-          <button  mat-menu-item  *ngIf="userRole === 'admin'" (click)="adminDash()" class="menu"><!-- Hides navigation items to all but admin users-->
-            <mat-icon class="menu">dashboard</mat-icon>
-            <span class="menu">Admin</span>
-          </button>
-          <button  mat-menu-item  (click)="employeeDash()" class="menu">
-            <mat-icon class="menu">home</mat-icon>
-            <span class="menu">Employee Dashboard</span>
-          </button>
-          <button  mat-menu-item  (click)="editProfile()" class="menu">
-            <mat-icon class="menu">people</mat-icon>
-            <span class="menu">Edit Profile</span>
-          </button>
-          <button  mat-menu-item (click)="servicesPage()">
-            <mat-icon class="menu">receipt</mat-icon>
-            <span class="menu">Create an Invoice</span>
-          </button>
-          <button  mat-menu-item (click)="adminReport()">
-            <mat-icon class="menu">pie_chart_outline</mat-icon>
-            <span class="menu">Service Graph</span>
-          </button>
-          <button mat-menu-item (click)="signOut()" class="menu">
-            <mat-icon class="menu">logout</mat-icon>
-            <span class="menu">Sign-Out</span>
-          </button>
+              <!-- Lower divider -->
+              <mat-divider></mat-divider>
+              <div>
+              <button  mat-menu-item  (click)="adminDash()" class="menu"><!-- Hides navigation items to all but admin users-->
+                <mat-icon class="menu">dashboard</mat-icon>
+                <span class="menu">Admin Dashboard</span>
+              </button>
+              <button  mat-menu-item  (click)="employeeDash()" class="menu">
+                <mat-icon class="menu">home</mat-icon>
+                <span class="menu">Employee Dashboard</span>
+              </button>
+              <button  mat-menu-item  (click)="editProfile()" class="menu">
+                <mat-icon class="menu">people</mat-icon>
+                <span class="menu">Edit Profile</span>
+              </button>
+              <button  mat-menu-item (click)="servicesPage()">
+                <mat-icon class="menu">receipt</mat-icon>
+                <span class="menu">Create an Invoice</span>
+              </button>
+              <button  mat-menu-item (click)="adminReport()">
+                <mat-icon class="menu">pie_chart_outline</mat-icon>
+                <span class="menu">Service Graph</span>
+              </button>
+              <button mat-menu-item (click)="signOut()" class="menu">
+                <mat-icon class="menu">logout</mat-icon>
+                <span class="menu">Sign-Out</span>
+              </button>
+            </div>
           </mat-menu>
         </a>
       </div>
@@ -83,4 +87,3 @@
   </div>
 
 </div>
-

@@ -1,0 +1,123 @@
+<!--
+============================================
+; Title:  base-layout.component.html
+; Author: Professor Krasso
+; Date: 17 Sep 2021
+; Modified By: Fred Marble, George Henderson, Kevin Jones
+; Description: Base layout component HTML file
+;===========================================
+ -->
+
+<div fxLayout="column" style="height: 100%;">
+  <!-- navigation -->
+  <nav fxFlex>
+    <mat-toolbar class="nav-style">
+      <button routerLink="/" mat-button fxLayoutAlign="flex-start">
+        <!-- logo -->
+        <img src="../../../assets/gryff.webp" height="40px" width="40px" />
+      </button>
+      <!-- navbar container -->
+      <div class="navbar-container" fxLayout="row" fxLayoutAlign="space-around">
+        <div>
+          <button class="navbar-link" routerLink="/" mat-button>
+            Service Repair
+          </button>
+          <button class="navbar-link" routerLink="about" mat-button>
+            About
+          </button>
+          <button class="navbar-link" routerLink="contact" mat-button>
+            Contact Us
+          </button>
+        </div>
+
+        <!-- profile menu -->
+        <div>
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="profileMenu"
+            aria-label="user profile menu"
+          >
+            <mat-icon>account_circle</mat-icon>
+            <mat-icon style="width: 20px; font-size: 20px;">arrow_drop_down</mat-icon>
+          </button>
+
+          <mat-menu #profileMenu="matMenu">
+            <p style="padding: 10px">
+              Signed in as
+              <span
+                style="color: white; font-weight: 400; font-size: large"
+                >{{ userName }}</span
+              >
+              <span *ngIf="isAdmin()" style="font-weight: 400; color: white">
+                [{{ userRole.role }}]</span
+              >
+            </p>
+            <mat-divider></mat-divider>
+
+            <button
+              *ngIf="isAdmin()"
+              mat-menu-item
+              [matMenuTriggerFor]="users"
+            >
+              <mat-icon>fingerprint</mat-icon>Configurations
+            </button>
+            <mat-menu #users="matMenu">
+              <button mat-menu-item>
+                <mat-icon>perm_identity</mat-icon>Users
+              </button>
+
+              <button
+                *ngIf="isAdmin()"
+                mat-menu-item
+                routerLink="/security-questions"
+              >
+                <mat-icon>question_answer</mat-icon>
+                Security Questions
+              </button>
+              <button mat-menu-item>
+                <mat-icon>security</mat-icon>Roles
+              </button>
+            </mat-menu>
+            <button
+              *ngIf="isAdmin()"
+              mat-menu-item
+              routerLink="/purchases-by-service-graph"
+            >
+              <mat-icon>pie_chart</mat-icon>
+              Purchases Graph
+            </button>
+
+            <button mat-menu-item (click)="signOut()">
+              <mat-icon>logout</mat-icon>
+              <span>Sign out</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </mat-toolbar>
+  </nav>
+
+  <!-- main content -->
+  <div fxFlex>
+    <main class="main-content" fxFlex="100%;">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <!-- footer -->
+  <div fxFlex>
+    <footer class="footer">
+      <mat-toolbar class="footer-content">
+        <p>
+          &copy; {{ year | date: "yyyy" }} - Bob's Computer Repair Shop -
+          <a
+            href="https://github.com/joneskj55/bcrs"
+            class="bu-link"
+            target="_blank"
+            >House Gryffindor</a
+          >
+        </p>
+      </mat-toolbar>
+    </footer>
+  </div>
+</div>

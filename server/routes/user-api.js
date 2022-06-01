@@ -58,46 +58,17 @@ router.get("/", async (req, res) => {
 });
 
 // findAllByID API
-router.get("/:id", async (req, res) => {
-  try {
-    // get one user by id
-    User.findOne({ _id: req.params.id }, function (err, user) {
-      // if there is an error
-      if (err) {
-        console.log(err); // log the error
-        // return an error response
-        const findByIdMongodbErrorResponse = new ErrorResponse(
-          500,
-          "Internal server error",
-          err
-        );
-        // send the error response
-        res.status(500).send(findByIdMongodbErrorResponse.toObject());
-        // if there is no error
-      } else {
-        console.log(user); // log the user
-        // return a success response
-        const findByIdResponse = new BaseResponse(
-          200,
-          "Query successful",
-          user
-        );
-        // send the response
-        res.json(findByIdResponse.toObject());
-      }
-    });
-    // if there is an error
-  } catch (e) {
-    console.log(e); // log the error
-    // return an error response
-    const findByIdCatchErrorResponse = new ErrorResponse(
-      500,
-      "Internal server error",
-      e.message
-    );
-    // send the error response
-    res.status(500).send(findByIdCatchErrorResponse.toObject());
-  }
+
+router.get('/:id', function(req, res, next) {
+  User.findOne({'_id': req.params.id}, function(err, user) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(user);
+      res.json(user);
+    }
+  })
 });
 
 // createUser API
@@ -315,7 +286,7 @@ router.get("/:userName/security-questions", async (req, res) => {
 // Find user role by username
 router.get("/:userName/role", async (req, res) => {
   try {
-    Role.findOne({ userName: req.params.userName }, function (err, role) {
+    User.findOne({ userName: req.params.userName }, function (err, role) {
       // Server Responses
       if (err) {
         console.log(err);

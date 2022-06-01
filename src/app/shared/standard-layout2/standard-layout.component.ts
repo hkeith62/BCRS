@@ -14,7 +14,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { UserRole } from '../interfaces/user-role';
 import { RoleService } from '../services/role.service';
 
-
 @Component({
   selector: 'app-standard-layout',
   templateUrl: './standard-layout.component.html',
@@ -22,22 +21,17 @@ import { RoleService } from '../services/role.service';
 })
 export class StandardLayoutComponent implements OnInit {
   year: number = Date.now();
-  isLoggedIn: boolean; // Checks if a user is logged in.
   userName: string;
   userRole: any;
 
-
   constructor(private cookieService: CookieService, private router: Router, private roleService: RoleService ) {
-    this.isLoggedIn = this.cookieService.get('session_user') ? true : false;
-    this.userName = sessionStorage.getItem('userName');
-    console.log('Signed in as: ' + this.userName);
 
-    // Get the user role in order to control access permissions
+    // Hides navigation items to all but admin users
     this.roleService.findUserRole(this.cookieService.get('session_user')).subscribe(res => {
-      this.userRole = res['data'].role;
+      this.userRole = res['data'];
     })
   };
-
+  // check if the user is an admin
   isAdmin(): boolean {
     return this.userRole.role === 'admin';
   }
@@ -45,15 +39,14 @@ export class StandardLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.userName = this.cookieService.get('session_user');
   }
-
   employeeDash() {
-    this.router.navigate(['/session-employee/dashboard-employee']); // Route to the employee dashboard
+    this.router.navigate(['/session-employee/dashboard-employee']); // Route to the employee dashborad
   }
   adminDash() {
     this.router.navigate(['/session/dashboard-admin']); // Route to the employee dashboard
   }
 
-  // Delete all session-user cookies and redirect to home page
+  // Delete session-user cookie and redirect to home page
   signOut() {
     this.cookieService.deleteAll();
     this.router.navigate(['/']);
