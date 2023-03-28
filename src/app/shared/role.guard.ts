@@ -1,28 +1,36 @@
+/*
+============================================
+; Title:  role.guard.ts
+; Author: Professor Krasso
+; Modified by: Fred Marble
+; Date: 2 October 2021
+; Description: Role Guard file
+;===========================================
+*/
+
+import { RoleService } from './services/role.service';
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { RoleService } from './shared/services/role.service';
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  Router,
+} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { map } from 'rxjs/operators';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoleGuard implements CanActivate {
-  isLoggedIn: boolean; // Checks if a user is logged in.
-  userName: string;
-
   constructor(
     private router: Router,
     private cookieService: CookieService,
     private roleService: RoleService
   ) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-     return this.roleService
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.roleService
       .findUserRole(this.cookieService.get('session_user'))
       .pipe(
         map((res) => {

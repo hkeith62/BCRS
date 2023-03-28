@@ -49,7 +49,7 @@ export class RoleService {
     return this.http.delete(`api/roles/${roleId}`);
   }
 
-  // Find user role by user id
+  // Find user role by username
   findUserRole(userName: string): Observable<any> {
     return this.http.get(`api/session/users/${userName}/role`);
   }

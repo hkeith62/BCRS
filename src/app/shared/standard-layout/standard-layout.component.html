@@ -22,11 +22,11 @@
         <mat-icon style="width: 20px; font-size: 20px;">arrow_drop_down</mat-icon>
 
           <!-- Icon drop down menu items -->
-          <mat-menu #profileMenu="matMenu">
-              <p style="padding: 10px; padding-right: 5px; color:white;" class="menu">
-                <span style="margin-left:6%;width:100%;font-weight:600">Signed in as &nbsp;{{ userName }}</span>
-                <span *ngIf="isAdmin()" style="font-weight: 400; color: white">
-                  [{{ userRole.role }}]</span>
+          <mat-menu #profileMenu="matMenu" style="width:110%">
+              <p style="padding: 10px; padding-right: 5px; color:white;width:100%" class="menu">
+                <span style="margin-left:6%;width:40%;font-weight:600">Signed in as {{ userName }}</span><br>
+                &nbsp;&nbsp; <span *ngIf="isAdmin()" style="font-weight: 400; color: white; width:60%">
+                   [{{ userRole.role }}]</span>
               </p>
 
               <!-- Divider space in dropdown -->
@@ -35,13 +35,13 @@
               <!-- Lower divider -->
               <mat-divider></mat-divider>
               <div>
-              <button  mat-menu-item  (click)="adminDash()" class="menu"><!-- Hides navigation items to all but admin users-->
+              <button  mat-menu-item *ngIf="isAdmin()"  routerLink="/session/dashboard-admin" class="menu"><!-- Hides navigation items to all but admin users-->
                 <mat-icon class="menu">dashboard</mat-icon>
                 <span class="menu">Admin Dashboard</span>
               </button>
               <button  mat-menu-item  (click)="employeeDash()" class="menu">
                 <mat-icon class="menu">home</mat-icon>
-                <span class="menu">Employee Dashboard</span>
+                <span class="menu">Home</span>
               </button>
               <button  mat-menu-item  (click)="editProfile()" class="menu">
                 <mat-icon class="menu">people</mat-icon>

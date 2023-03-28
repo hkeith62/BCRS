@@ -22,15 +22,12 @@ import { RoleService } from '../services/role.service';
 })
 export class StandardLayoutComponent implements OnInit {
   year: number = Date.now();
-  isLoggedIn: boolean; // Checks if a user is logged in.
+
   userName: string;
   userRole: any;
 
 
   constructor(private cookieService: CookieService, private router: Router, private roleService: RoleService ) {
-    this.isLoggedIn = this.cookieService.get('session_user') ? true : false;
-    this.userName = sessionStorage.getItem('userName');
-    console.log('Signed in as: ' + this.userName);
 
     // Get the user role in order to control access permissions
     this.roleService.findUserRole(this.cookieService.get('session_user')).subscribe(res => {

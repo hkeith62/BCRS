@@ -84,56 +84,70 @@ const routes: Routes = [
       {
         path: 'dashboard-admin',
         component: DashboardAdminComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'users',
         component: UserListComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'user-create',
         component: UserCreateComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'users/:userId',
         component: UserUpdateComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'role-list',
         component: RoleListComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'role-create',
         component: RoleCreateComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'roles/:roleId',
         component: RoleDetailsComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'security-questions',
         component: SecurityQuestionListComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'security-questions/create',
         component: SecurityQuestionCreateComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'services',
         component: ServicesListComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'services/:serviceId',
         component: ServicesEditComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'services/create/new',
         component: ServicesCreateComponent,
+        canActivate: [RoleGuard],
       },
       {
         path: 'services-graph',
         component: ServicesGraphComponent,
+        canActivate: [RoleGuard],
       },
     ],
+    canActivate: [AuthGuard],
   },
   /* Standard-employee users (canActivate) */
   {
